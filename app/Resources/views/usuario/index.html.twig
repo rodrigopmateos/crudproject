@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista de usuarios</h1>
+
+{% for flash_message in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apepaterno</th>
+                <th>Apematerno</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.apePaterno }}</td>
+                <td>{{ usuario.apeMaterno }}</td>
+                <td>{{ usuario.edad }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">Mostrar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('usuario_new') }}">Crear usuario nuevo</a>
+        </li>
+    </ul>
+{% endblock %}

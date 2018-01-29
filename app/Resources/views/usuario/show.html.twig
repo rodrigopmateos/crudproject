@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Usuario</h1>
+
+{% for flash_message in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ usuario.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ usuario.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apepaterno</th>
+                <td>{{ usuario.apePaterno }}</td>
+            </tr>
+            <tr>
+                <th>Apematerno</th>
+                <td>{{ usuario.apeMaterno }}</td>
+            </tr>
+            <tr>
+                <th>Edad</th>
+                <td>{{ usuario.edad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('usuario_index') }}">Regresar a la lista</a>
+        </li>
+        <li>
+            <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

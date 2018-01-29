@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Direccion</h1>
+
+{% for flash_message in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ direccion.id }}</td>
+            </tr>
+            <tr>
+                <th>Calle</th>
+                <td>{{ direccion.calle }}</td>
+            </tr>
+            <tr>
+                <th>Colonia</th>
+                <td>{{ direccion.colonia }}</td>
+            </tr>
+            <tr>
+                <th>Delegacion</th>
+                <td>{{ direccion.delegacion }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ direccion.numero }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('direccion_index') }}">Regresar a la lista</a>
+        </li>
+        <li>
+            <a href="{{ path('direccion_edit', { 'id': direccion.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
